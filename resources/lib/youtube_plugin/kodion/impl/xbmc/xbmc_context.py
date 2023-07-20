@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
 
-    Copyright (C) 2014-2016 bromix (plugin.video.youtube)
-    Copyright (C) 2016-2018 plugin.video.youtube
+    Copyright (C) 2014-2016 bromix (plugin.video.noapikeyyoutube)
+    Copyright (C) 2016-2018 plugin.video.noapikeyyoutube
 
     SPDX-License-Identifier: GPL-2.0-only
     See LICENSES/GPL-2.0-only for more information.
@@ -43,7 +43,7 @@ class XbmcContext(AbstractContext):
         if plugin_id:
             self._addon = xbmcaddon.Addon(id=plugin_id)
         else:
-            self._addon = xbmcaddon.Addon(id='plugin.video.youtube')
+            self._addon = xbmcaddon.Addon(id='plugin.video.noapikeyyoutube')
 
         """
         I don't know what xbmc/kodi is doing with a simple uri, but we have to extract the information from the
@@ -279,7 +279,7 @@ class XbmcContext(AbstractContext):
         data = json.dumps(data)
         self.log_debug('send_notification: |%s| -> |%s|' % (method, data))
         data = '\\"[\\"%s\\"]\\"' % quote(data)
-        self.execute('NotifyAll(plugin.video.youtube,%s,%s)' % (method, data))
+        self.execute('NotifyAll(plugin.video.noapikeyyoutube,%s,%s)' % (method, data))
 
     def use_inputstream_adaptive(self):
         addon_enabled = self.addon_enabled('inputstream.adaptive')

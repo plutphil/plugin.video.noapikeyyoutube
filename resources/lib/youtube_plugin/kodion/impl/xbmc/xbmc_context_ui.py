@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
 
-    Copyright (C) 2014-2016 bromix (plugin.video.youtube)
-    Copyright (C) 2016-2018 plugin.video.youtube
+    Copyright (C) 2014-2016 bromix (plugin.video.noapikeyyoutube)
+    Copyright (C) 2016-2018 plugin.video.noapikeyyoutube
 
     SPDX-License-Identifier: GPL-2.0-only
     See LICENSES/GPL-2.0-only for more information.
@@ -156,17 +156,17 @@ class XbmcContextUI(AbstractContextUI):
 
     @staticmethod
     def set_home_window_property(property_id, value):
-        property_id = ''.join(['plugin.video.youtube-', property_id])
+        property_id = ''.join(['plugin.video.noapikeyyoutube-', property_id])
         xbmcgui.Window(10000).setProperty(property_id, value)
 
     @staticmethod
     def get_home_window_property(property_id):
-        property_id = ''.join(['plugin.video.youtube-', property_id])
+        property_id = ''.join(['plugin.video.noapikeyyoutube-', property_id])
         return xbmcgui.Window(10000).getProperty(property_id) or None
 
     @staticmethod
     def clear_home_window_property(property_id):
-        property_id = ''.join(['plugin.video.youtube-', property_id])
+        property_id = ''.join(['plugin.video.noapikeyyoutube-', property_id])
         xbmcgui.Window(10000).clearProperty(property_id)
 
     @staticmethod

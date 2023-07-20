@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
 
-    Copyright (C) 2014-2016 bromix (plugin.video.youtube)
-    Copyright (C) 2016-2018 plugin.video.youtube
+    Copyright (C) 2014-2016 bromix (plugin.video.noapikeyyoutube)
+    Copyright (C) 2016-2018 plugin.video.noapikeyyoutube
 
     SPDX-License-Identifier: GPL-2.0-only
     See LICENSES/GPL-2.0-only for more information.
@@ -280,9 +280,9 @@ class Provider(kodion.AbstractProvider):
                 access_manager.set_last_origin(dev_origin)
                 self.get_resource_manager(context).clear()
         else:
-            if api_last_origin != 'plugin.video.youtube':
-                context.log_debug('API key origin changed, clearing cache. |plugin.video.youtube|')
-                access_manager.set_last_origin('plugin.video.youtube')
+            if api_last_origin != 'plugin.video.noapikeyyoutube':
+                context.log_debug('API key origin changed, clearing cache. |plugin.video.noapikeyyoutube|')
+                access_manager.set_last_origin('plugin.video.noapikeyyoutube')
                 self.get_resource_manager(context).clear()
 
         if dev_id:
@@ -1209,7 +1209,7 @@ class Provider(kodion.AbstractProvider):
                             'settings_xml': 'settings.xml',
                             'api_keys': 'api_keys.json',
                             'access_manager': 'access_manager.json',
-                            'temp_files': 'special://temp/plugin.video.youtube/'}
+                            'temp_files': 'special://temp/plugin.video.noapikeyyoutube/'}
             _file = _maint_files.get(maint_type, '')
             success = False
             if _file:

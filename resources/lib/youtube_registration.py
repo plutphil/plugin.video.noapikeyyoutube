@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 
-    Copyright (C) 2018-2018 plugin.video.youtube
+    Copyright (C) 2018-2018 plugin.video.noapikeyyoutube
 
     SPDX-License-Identifier: GPL-2.0-only
     See LICENSES/GPL-2.0-only for more information.
@@ -18,7 +18,7 @@ def register_api_keys(addon_id, api_key, client_id, client_secret):
 
     addon.xml
     ---
-    <import addon="plugin.video.youtube" version="6.0.0"/>
+    <import addon="plugin.video.noapikeyyoutube" version="6.0.0"/>
     ---
 
     .py
@@ -29,7 +29,7 @@ def register_api_keys(addon_id, api_key, client_id, client_secret):
                                            client_id='825419953561-ert5tccq1r0upsuqdf5nm3le39czk23a.apps.googleusercontent.com',
                                            client_secret='Y5cE1IKzJQe1NZ0OsOoEqpu3')
     # then use your keys by appending an addon_id param to the plugin url
-    xbmc.executebuiltin('RunPlugin(plugin://plugin.video.youtube/channel/UCaBf1a-dpIsw8OxqH4ki2Kg/?addon_id=plugin.video.example)')
+    xbmc.executebuiltin('RunPlugin(plugin://plugin.video.noapikeyyoutube/channel/UCaBf1a-dpIsw8OxqH4ki2Kg/?addon_id=plugin.video.example)')
     # addon_id will be passed to all following calls
     # also see youtube_authentication.py and youtube_requests.py
     ---
@@ -40,9 +40,9 @@ def register_api_keys(addon_id, api_key, client_id, client_secret):
     :param client_secret: YouTube Data v3 Client secret
     """
 
-    context = Context(plugin_id='plugin.video.youtube')
+    context = Context(plugin_id='plugin.video.noapikeyyoutube')
 
-    if not addon_id or addon_id == 'plugin.video.youtube':
+    if not addon_id or addon_id == 'plugin.video.noapikeyyoutube':
         context.log_error('Register API Keys: |%s| Invalid addon_id' % addon_id)
         return
 
