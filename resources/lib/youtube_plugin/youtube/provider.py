@@ -1364,7 +1364,12 @@ class Provider(kodion.AbstractProvider):
         self.set_content_type(context, kodion.constants.content_type.FILES)
 
         result = []
-
+        from ..kodion import items
+        item_params = {'video_id': "dQw4w9WgXcQ"}
+        item_uri = context.create_uri(['play'], item_params)
+        video_item = items.VideoItem("testtesttest", item_uri)
+        result.append(video_item)
+        
         # sign in
         if not self.is_logged_in() and settings.get_bool('youtube.folder.sign.in.show', True):
             sign_in_item = DirectoryItem(context.get_ui().bold(context.localize(self.LOCAL_MAP['youtube.sign.in'])),
