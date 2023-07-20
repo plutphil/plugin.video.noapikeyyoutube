@@ -1,4 +1,5 @@
-
+This Fork is an attempt to make this plugin usable without an api key again. By now just the video player works without an api key. 
+Search, popular videos is not working currently. A nice to have feature would be to import subscriptions from invidious newpipe, or use invidious to query new videos.
 ![](https://github.com/anxdpanic/plugin.video.noapikeyyoutube/raw/master/resources/media/icon.png)
 
 [![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fanxdpanic%2Fplugin.video.noapikeyyoutube%2Fbadge&logo=none)](https://actions-badge.atrox.dev/anxdpanic/plugin.video.noapikeyyoutube/goto)
