@@ -1370,6 +1370,14 @@ class Provider(kodion.AbstractProvider):
         video_item = items.VideoItem("testtesttest", item_uri)
         result.append(video_item)
         
+        ## Invidious RSS feed
+        rss_item = DirectoryItem("Invidious RSS feed",
+            context.create_uri(['special', 'rss']),
+            context.create_resource_path('media', 'channels.png'))
+        rss_item.set_fanart(self.get_fanart(context))
+        result.append(rss_item)
+        
+        
         # sign in
         if not self.is_logged_in() and settings.get_bool('youtube.folder.sign.in.show', True):
             sign_in_item = DirectoryItem(context.get_ui().bold(context.localize(self.LOCAL_MAP['youtube.sign.in'])),
@@ -1424,7 +1432,9 @@ class Provider(kodion.AbstractProvider):
                 context.create_resource_path('media', 'popular.png'))
             what_to_watch_item.set_fanart(self.get_fanart(context))
             result.append(what_to_watch_item)
-
+        
+        
+        
         # search
         if settings.get_bool('youtube.folder.search.show', True):
             search_item = kodion.items.SearchItem(context, image=context.create_resource_path('media', 'search.png'),

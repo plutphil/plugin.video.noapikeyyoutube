@@ -3,6 +3,16 @@
     <section id="plugin.video.noapikeyyoutube">
         <category help="" id="general" label="30000">
             <group id="1">
+                <setting help="" id="invidious.rssfeed" label="30740" type="string">
+                    <level>0</level>
+                    <default/>
+                    <constraints>
+                        <allowempty>true</allowempty>
+                    </constraints>
+                    <control format="string" type="edit">
+                        <heading>30740</heading>
+                    </control>
+                </setting>
                 <setting help="" id="kodion.video.quality" label="30010" type="integer">
                     <level>0</level>
                     <default>3</default>
@@ -362,17 +372,17 @@
                 </setting>
                 <setting help="" id="youtube.folder.recommendations.show" label="30551" type="boolean">
                     <level>0</level>
-                    <default>true</default>
+                    <default>false</default>
                     <control type="toggle"/>
                 </setting>
                 <setting help="" id="youtube.folder.popular_right_now.show" label="30513" type="boolean">
                     <level>0</level>
-                    <default>true</default>
+                    <default>false</default>
                     <control type="toggle"/>
                 </setting>
                 <setting help="" id="youtube.folder.search.show" label="30102" type="boolean">
                     <level>0</level>
-                    <default>true</default>
+                    <default>false</default>
                     <control type="toggle"/>
                 </setting>
                 <setting help="" id="youtube.folder.quick_search.show" label="30605" type="boolean">
@@ -387,12 +397,12 @@
                 </setting>
                 <setting help="" id="youtube.folder.my_location.show" label="30654" type="boolean">
                     <level>0</level>
-                    <default>true</default>
+                    <default>false</default>
                     <control type="toggle"/>
                 </setting>
                 <setting help="" id="youtube.folder.my_channel.show" label="30507" type="boolean">
                     <level>0</level>
-                    <default>true</default>
+                    <default>false</default>
                     <control type="toggle"/>
                 </setting>
                 <setting help="" id="youtube.folder.purchases.show" label="30622" type="boolean">
@@ -488,17 +498,17 @@
                 </setting>
                 <setting help="" id="youtube.folder.completed.live.show" label="30647" type="boolean">
                     <level>0</level>
-                    <default>true</default>
+                    <default>false</default>
                     <control type="toggle"/>
                 </setting>
                 <setting help="" id="youtube.folder.upcoming.live.show" label="30646" type="boolean">
                     <level>0</level>
-                    <default>true</default>
+                    <default>false</default>
                     <control type="toggle"/>
                 </setting>
                 <setting help="" id="youtube.folder.live.show" label="30539" type="boolean">
                     <level>0</level>
-                    <default>true</default>
+                    <default>false</default>
                     <control type="toggle"/>
                 </setting>
                 <setting help="" id="youtube.folder.switch.user.show" label="30655" type="boolean">

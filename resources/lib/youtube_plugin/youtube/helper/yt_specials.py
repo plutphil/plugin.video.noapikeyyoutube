@@ -83,6 +83,38 @@ def _process_popular_right_now(provider, context):
 
     return result
 
+def _process_rss(provider, context):
+    rssfeedurl = context.get_settings().get_string('invidious.rssfeed', '')
+    context.log_debug('rssfeedurl "%s"' % rssfeedurl)
+    provider.set_content_type(context, kodion.constants.content_type.VIDEOS)
+    
+    import requests
+    res = requests.get(rssfeedurl)
+    import xml.etree.ElementTree as ET
+    import urllib.request
+    xml_data = res.text
+    tree = ET.fromstring(xml_data)
+    from ...kodion import items
+    entries = tree.findall('.//{http://www.w3.org/2005/Atom}entry')
+    result = []
+    for entry in entries:
+        title = entry.findtext('{http://www.w3.org/2005/Atom}title')
+        vidid = entry.findtext('{http://www.youtube.com/xml/schemas/2015}videoId')
+        thumbnail_url = entry.find(".//{http://search.yahoo.com/mrss/}thumbnail").attrib["url"]
+        thumbnail_url = urllib.parse.urljoin(rssfeedurl, thumbnail_url)
+        item_params = {'video_id': vidid}
+        item_uri = context.create_uri(['play'], item_params)
+        video_item = items.VideoItem(title, item_uri,thumbnail_url,thumbnail_url)
+        author = entry.find('{http://www.w3.org/2005/Atom}author')
+        authorname = author.findtext("{http://www.w3.org/2005/Atom}name")
+        authoruri = author.findtext("{http://www.w3.org/2005/Atom}uri")
+        video_item.add_artist(authorname)
+        video_item.add_artist(authoruri)
+        video_item.set_plot(str(authorname)+" "+str(authoruri)+" "+str(author))
+        result.append(video_item)
+    
+    return result
+
 
 def _process_browse_channels(provider, context):
     provider.set_content_type(context, kodion.constants.content_type.FILES)
@@ -326,6 +358,17 @@ def _process_new_uploaded_videos_tv_filtered(provider, context):
 
     return result
 
+def _process_testtesttest(provider, context):
+    provider.set_content_type(context, kodion.constants.content_type.VIDEOS)
+    result = []
+    
+    from ...kodion import items
+    item_params = {'video_id': "dQw4w9WgXcQ"}
+    item_uri = context.create_uri(['play'], item_params)
+    video_item = items.VideoItem("testtesttest", item_uri)
+    result.append(video_item)
+    
+    return result
 
 def process(category, provider, context):
     _ = provider.get_client(context)  # required for provider.is_logged_in()
@@ -334,8 +377,12 @@ def process(category, provider, context):
 
     if category == 'related_videos':
         return _process_related_videos(provider, context)
+    elif category == 'testtesttest':
+        return _process_testtesttest(provider, context)
     elif category == 'popular_right_now':
         return _process_popular_right_now(provider, context)
+    elif category == 'rss':
+        return _process_rss(provider, context)
     elif category == 'recommendations':
         return _process_recommendations(provider, context)
     elif category == 'browse_channels':

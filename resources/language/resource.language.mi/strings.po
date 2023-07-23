@@ -1246,3 +1246,7 @@ msgstr ""
 msgctxt "#30739"
 msgid "Alternate #2"
 msgstr ""
+
+msgctxt "#30740"
+msgid "Invidious RSS feed"
+msgstr "Invidious RSS feed"

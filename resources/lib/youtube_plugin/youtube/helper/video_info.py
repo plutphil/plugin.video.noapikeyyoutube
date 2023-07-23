@@ -997,6 +997,7 @@ class VideoInfo(object):
         return None
 
     def _method_get_video_info(self):
+        self._context.log_debug("got here")
         if self._access_token:
             auth_header = 'Bearer %s' % self._access_token
         else:
@@ -1183,7 +1184,7 @@ class VideoInfo(object):
         playback_tracking = player_response.get('playbackTracking', {})
         playback_url = playback_tracking.get('videostatsPlaybackUrl', {}).get('baseUrl', '')
         watchtime_url = playback_tracking.get('videostatsWatchtimeUrl', {}).get('baseUrl', '')
-
+        
         if playback_url and playback_url.startswith('http'):
             playback_stats['playback_url'] = ''.join([
                 playback_url,
@@ -1245,6 +1246,7 @@ class VideoInfo(object):
             mpd_url, s_info = self.generate_mpd(adaptive_fmts,
                                                 video_details.get('lengthSeconds', '0'),
                                                 license_info.get('url'))
+            self._context.log_debug('got mpd url!: '+mpd_url)
 
         if mpd_url:
             video_stream = {
@@ -1336,7 +1338,7 @@ class VideoInfo(object):
         # last fallback
         if not stream_list:
             raise YouTubeException('No streams found')
-
+        #self._context.log_debug(str(stream_list))
         return stream_list
 
     def generate_mpd(self, adaptive_fmts, duration, license_url):
@@ -1688,8 +1690,18 @@ class VideoInfo(object):
             success = mpd_file.write(str(out))
         if not success:
             return None, None
-        return 'http://{0}:{1}/{2}.mpd'.format(
+        with xbmcvfs.File('{0}{1}.html'.format(basepath, self.video_id), 'w') as mpd_file:
+            mpd_file.write("""
+                           <h1> WORKS </h1>""")
+        htmlurl = 'http://{0}:{1}/{2}.html'.format(
             ipaddress,
             self._context.get_settings().httpd_port(),
             self.video_id
-        ), stream_info
+        )
+        self._context.log_debug("html url: "+htmlurl)
+        mpdurl = 'http://{0}:{1}/{2}.mpd'.format(
+            ipaddress,
+            self._context.get_settings().httpd_port(),
+            self.video_id
+        )
+        return mpdurl, stream_info

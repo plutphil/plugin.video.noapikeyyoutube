@@ -100,6 +100,23 @@ class YouTubeRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                 except IOError:
                     response = 'File Not Found: |{proxy_path}| -> |{file_path}|'.format(proxy_path=self.path, file_path=file_path.encode('utf-8'))
                     self.send_error(404, response)
+            elif dash_proxy_enabled and self.path.endswith('.html'):
+                file_path = os.path.join(self.base_path, self.path.strip('/').strip('\\'))
+                file_chunk = True
+                logger.log_debug('HTTPServer: Request file path |{file_path}|'.format(file_path=file_path.encode('utf-8')))
+                try:
+                    with open(file_path, 'rb') as f:
+                        self.send_response(200)
+                        self.send_header('Content-Type', 'text/html')
+                        self.send_header('Content-Length', os.path.getsize(file_path))
+                        self.end_headers()
+                        while file_chunk:
+                            file_chunk = f.read(self.chunk_size)
+                            if file_chunk:
+                                self.wfile.write(file_chunk)
+                except IOError:
+                    response = 'File Not Found: |{proxy_path}| -> |{file_path}|'.format(proxy_path=self.path, file_path=file_path.encode('utf-8'))
+                    self.send_error(404, response)
             elif api_config_enabled and stripped_path.lower() == '/api':
                 html = self.api_config_page()
                 html = html.encode('utf-8')
