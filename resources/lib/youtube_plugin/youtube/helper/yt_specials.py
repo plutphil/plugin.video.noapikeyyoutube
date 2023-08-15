@@ -92,7 +92,8 @@ def _process_rss(provider, context):
     res = requests.get(rssfeedurl)
     import xml.etree.ElementTree as ET
     import urllib.request
-    xml_data = res.text
+    #.text encodes https://stackoverflow.com/questions/12349728/elementtree-and-unicode
+    xml_data = res.content
     tree = ET.fromstring(xml_data)
     from ...kodion import items
     entries = tree.findall('.//{http://www.w3.org/2005/Atom}entry')
